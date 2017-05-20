@@ -6,6 +6,8 @@
 
 const { readmeMdBud } = require('ape-tmpl')
 const pkg = require('./package.json')
+const { functionComments } = require('pon-doc')
+const aglob = require('aglob')
 
 module.exports = readmeMdBud({
   pkg,
@@ -18,7 +20,15 @@ module.exports = readmeMdBud({
   },
   overview: 'doc/overview.md',
   links: require('./doc/links'),
-  vars: {}
+  vars: {
+    funcs: aglob.sync('lib/*.js')
+      .filter((filename) => !/index\.js$/.test(filename))
+      .map((filename) => {
+        let comments = functionComments(filename)
+        return comments && comments[ 0 ]
+      })
+      .filter(Boolean)
+  }
 })
 
 if (!module.parent) {
