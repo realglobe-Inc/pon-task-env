@@ -1,6 +1,6 @@
 {
   "name": "pon-task-env",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Pon task to set NODE_ENV",
   "main": "lib",
   "browser": "shim/browser",
