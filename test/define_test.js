@@ -31,6 +31,8 @@ describe('define', function () {
     equal(process.env.NODE_ENV, 'bar')
     equal(process.env.HOGE, 'FUGE')
 
+    yield Promise.resolve(task(ctx))
+
     process.env.NODE_ENV = NODE_ENV
   }))
 })

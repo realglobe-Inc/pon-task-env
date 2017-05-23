@@ -6,7 +6,7 @@ const env = require('pon-task-env')
 async function tryExample () {
   let run = pon({
     'production:env': env('production'),
-    'production:debug': env('development', { DEBUG: 'sg:*' }), // Path the object to change other env variables
+    'production:debug': env('development', { DEBUG: 'sg:*' }), // Change env variables other than NODE_ENV
     'production:compile': () => { /* ... */ }
   })
 
