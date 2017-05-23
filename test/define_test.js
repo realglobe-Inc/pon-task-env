@@ -6,7 +6,7 @@
 
 const define = require('../lib/define.js')
 const ponContext = require('pon-context')
-const { ok } = require('assert')
+const { ok, equal } = require('assert')
 const co = require('co')
 
 describe('define', function () {
@@ -24,10 +24,12 @@ describe('define', function () {
     let ctx = ponContext()
     let { NODE_ENV } = process.env
     process.env.NODE_ENV = 'foo'
-    let task = define('bar', {})
+    let task = define('bar', { HOGE: 'FUGE' })
     ok(task)
 
     yield Promise.resolve(task(ctx))
+    equal(process.env.NODE_ENV, 'bar')
+    equal(process.env.HOGE, 'FUGE')
 
     process.env.NODE_ENV = NODE_ENV
   }))
