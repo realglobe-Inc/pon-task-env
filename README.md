@@ -75,11 +75,12 @@ Usage
 'use strict'
 
 const pon = require('pon')
-const ponTaskEnv = require('pon-task-env')
+const env = require('pon-task-env')
 
 async function tryExample () {
   let run = pon({
-    'production:env': ponTaskEnv('production'),
+    'production:env': env('production'),
+    'production:debug': env('development', { DEBUG: 'sg:*' }), // Change env variables other than NODE_ENV
     'production:compile': () => { /* ... */ }
   })
 
@@ -101,13 +102,14 @@ Signatures
 ---------
 
 
-### `define(env, options) -> function`
+### `define(nodeEnv, otherEnv, options) -> function`
 
 Define task
 
 | Param | type | Description |
 | ---- | --- | ----------- |
-| env | string |  NODE_ENV to set |
+| nodeEnv | string |  NODE_ENV to set |
+| otherEnv | Object |  Other env vriables |
 | options | Object |  Optional settings |
 
 
