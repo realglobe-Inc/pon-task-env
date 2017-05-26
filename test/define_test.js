@@ -24,7 +24,8 @@ describe('define', function () {
     let ctx = ponContext()
     let { NODE_ENV } = process.env
     process.env.NODE_ENV = 'foo'
-    let task = define('bar', { HOGE: 'FUGE' })
+    process.env.BAZ = 'this is baz'
+    let task = define('bar', { HOGE: 'FUGE', BAZ: 'this is baz' })
     ok(task)
 
     yield Promise.resolve(task(ctx))
