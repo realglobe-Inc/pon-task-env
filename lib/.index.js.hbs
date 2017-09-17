@@ -8,7 +8,7 @@
 
 const define = require('./define')
 
-let lib = define.bind(this)
+const lib = define.bind(this)
 
 Object.assign(lib, define, {
   define
