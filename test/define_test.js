@@ -33,7 +33,14 @@ describe('define', function () {
 
     await Promise.resolve(task(ctx))
 
+    {
+      const notFor = define.notFor('bar')
+      const e = await notFor(ctx).catch((e) => e)
+      ok(e.message)
+    }
+
     process.env.NODE_ENV = NODE_ENV
+
   })
 })
 
