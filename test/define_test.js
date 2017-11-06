@@ -40,7 +40,13 @@ describe('define', function () {
     }
 
     process.env.NODE_ENV = NODE_ENV
+  })
 
+  it('Dynamic', async () => {
+    const task = define.dynamic(() => function tak () {
+      console.log('This is the task')
+    })
+    ok(task)
   })
 })
 
