@@ -20,7 +20,7 @@ describe('define', function () {
   })
 
   it('Define', async () => {
-    let ctx = ponContext()
+    const ctx = ponContext()
     let {NODE_ENV} = process.env
     process.env.NODE_ENV = 'foo'
     process.env.BAZ = 'this is baz'
@@ -43,10 +43,18 @@ describe('define', function () {
   })
 
   it('Dynamic', async () => {
-    const task = define.dynamic(() => function tak () {
-      console.log('This is the task')
-    })
+    const ctx = ponContext()
+    const task = define.dynamic(() => {
+      function foo () {
+        console.log('This is the foo')
+      }
+
+      foo.bar = () => console.log('this is the bar')
+      return foo
+    }, {sub: 'bar'})
     ok(task)
+    await task(ctx)
+    await task.bar(ctx)
   })
 })
 
