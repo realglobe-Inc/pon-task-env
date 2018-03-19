@@ -56,6 +56,22 @@ describe('define', function () {
     await task(ctx)
     await task.bar(ctx)
   })
+
+  it('Skip', async () => {
+    const ctx = ponContext()
+    const task = function task () { console.log('Do main task.') }
+    task.subTask = function subTask () { console.log('Do sub task.') }
+    const skipForTest = define.skipFor('test', task)
+
+    const {NODE_ENV} = process.env
+
+    process.env.NODE_ENV = 'test'
+
+    skipForTest(ctx)
+    skipForTest.subTask(ctx)
+
+    process.env.NODE_ENV = NODE_ENV
+  })
 })
 
 /* global describe, before, after, it */
