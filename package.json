@@ -24,11 +24,11 @@
   "homepage": "https://github.com/realglobe-Inc/pon-task-env#readme",
   "dependencies": {
     "argx": "^3.0.2",
-    "asenv": "^2.0.2",
-    "asobj": "^2.1.0"
+    "asenv": "^3.0.1",
+    "asobj": "^3.0.0"
   },
   "devDependencies": {
-    "ababel": "^4.0.9",
+    "ababel": "^5.0.3",
     "aglob": "^3.0.1",
     "amocha": "^5.0.0",
     "ape-doc": "^2.0.4",
